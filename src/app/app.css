@@ -4,6 +4,10 @@ ul {
   margin: 0;
 }
 
+main{
+  width: 1000px;
+}
+
 #navigation {
   display: flex;
   justify-content: space-between;
