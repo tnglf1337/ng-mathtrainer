@@ -6,7 +6,7 @@ import {TrainComponent} from './train-component/train-component';
   selector: 'app-root',
   imports: [RouterOutlet, TrainComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css', 'debug.css']
 })
 export class App {
   protected readonly title = signal('ng-mathtrain');
