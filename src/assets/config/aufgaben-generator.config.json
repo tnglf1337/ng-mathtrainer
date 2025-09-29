@@ -2,60 +2,60 @@
   "add": {
     "0": {
       "numberRange": [2, 100],
-      "terms": [2]
+      "terms": 2
     },
     "1": {
       "numberRange": [10, 10000],
-      "terms": [3]
+      "terms": 3
     },
     "2": {
       "numberRange": [10000, 99999],
-      "terms": [4]
+      "terms": 4
     }
   },
   "sub": {
     "0": {
       "numberRange": [-100, 100],
-      "terms": [2]
+      "terms": 2
     },
     "1": {
       "numberRange": [-10000, 10000],
-      "terms": [3]
+      "terms": 3
     },
     "2": {
       "numberRange": [-99999, 99999],
-      "terms": [4]
+      "terms": 4
     }
   },
   "mul": {
     "0": {
       "numberRange": [-10, 10],
-      "terms": [2]
+      "terms": 2
     },
     "1": {
       "numberRange": [-20, 20],
-      "terms": [2]
+      "terms": 2
     },
     "2": {
       "numberRange": [-30, 30],
-      "terms": [3]
+      "terms": 3
     }
   },
   "div": {
     "0": {
       "zaehlerRange":[20,100],
       "nennerRange": [2, 20],
-      "terms": [2]
+      "terms": 2
     },
     "1": {
       "zaehlerRange":[50,500],
       "nennerRange": [2, 50],
-      "terms": [2]
+      "terms": 2
     },
     "2": {
       "zaehlerRange":[100,1000],
       "nennerRange": [10, 100],
-      "terms": [3]
+      "terms": 3
     }
   }
 }
