@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-train-component',
   imports: [],
   templateUrl: './train-component.html',
-  styleUrl: './train-component.css'
+  styleUrls: ['./train-component.css', '../debug.css']
 })
 export class TrainComponent {
 
