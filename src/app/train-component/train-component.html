@@ -1,47 +1,78 @@
-<section id="uebung-konfiguration-container" class="border-b">
-  <section id="modus-container" class="border-o">
-    <form id="modus-form" class="form">
-      <label>Modus:</label>
-      <select>
-        <option>+ Addition</option>
-        <option>- Subtraktion</option>
-        <option>* Multiplikation</option>
-        <option>/ Division</option>
-        <option>Gemischt</option>
-      </select>
+<section id="uebung-konfiguration-container" class="d-flex-row">
+  <section id="modus-container" class="w-100 d-flex-row centered">
+    <form id="modus-form" class="form d-flex-row">
+      <div class="d-flex-row centered m-2">
+        <label>Modus:</label>
+      </div>
+      <div class="m-2">
+        <select class="form-select">
+          <option>+ Addition</option>
+          <option>- Subtraktion</option>
+          <option>* Multiplikation</option>
+          <option>/ Division</option>
+          <option>Gemischt</option>
+        </select>
+      </div>
     </form>
   </section>
-  <section id="schwierigkeit-container" class="border-o">
-    <form id="schwierigkeit-form" class="form">
-      <label>Schwierigkeit:</label>
-      <select>
-        <option>Einfach</option>
-        <option>Mittel</option>
-        <option>Schwer</option>
-      </select>
+  <section id="schwierigkeit-container" class="w-100 d-flex-row centered ">
+    <form id="schwierigkeit-form" class="form d-flex-row">
+      <div class="d-flex-row centered m-2">
+        <label>Schwierigkeit:</label>
+      </div>
+      <div class="m-2">
+        <select class="form-select">
+          <option>Einfach</option>
+          <option>Mittel</option>
+          <option>Schwer</option>
+        </select>
+      </div>
     </form>
   </section>
 </section>
-<section id="uebung-container" class="border-b">
-  <div id="uebung-ansicht-container" class="border-b">
-    <div id="zeit-container" class="border-r">
 
+<section id="uebung-container">
+  <div id="uebung-ansicht-container">
+    <div id="zeit-container">
+      <p>3m 28s</p>
     </div>
-    <div id="aufgabe-container" class="border-r">
-
+    <div id="aufgabe-container">
+      <p>88888+99999+99999+99999</p>
     </div>
-    <div id="loesung-input-container" class="border-r">
-
+    <div id="loesung-input-container" class="d-flex-row centered">
+      <form id="loesung-form">
+        <label type="hidden" aria-label="Eingabefeld für die Lösung"></label>
+        <input id="loesung-input" type="text" required maxlength="10">
+      </form>
     </div>
-    <section id="post-uebung-statistik-container" class="border-b">
-      <div id="uebung-ergebnis-container" class="border-g">
-
+    <section id="post-uebung-statistik-container">
+      <div id="uebung-ergebnis-container" class="d-flex-row centered gap-10">
+        <div>
+          <p>Gelöst: <span>30</span></p>
+        </div>
+        <div>
+          <p>Korrekt: <span class="korrekt-span">26</span></p>
+        </div>
+        <div>
+          <p>Falsch: <span class="falsch-span">4</span></p>
+        </div>
       </div>
-      <div id="falsch-events-container" class="border-g">
-
-      </div>
-      <div id="link-container" class="border-g">
-
+      <section id="falsch-events-container">
+        <h5>Falsch beantwortet</h5>
+        <ul>
+          <li>
+            <p><span>3763+73</span> = <span class="falsch-span"><s>1111</s></span> <span> &#x27A1; </span> <span class="korrekt-span">3836</span></p>
+          </li>
+          <li>
+            <p><span>3763+73</span> = <span class="falsch-span"><s>1111</s></span> <span> &#x27A1; </span> <span class="korrekt-span">3836</span></p>
+          </li>
+          <li>
+            <p><span>3763+73</span> = <span class="falsch-span"><s>1111</s></span> <span> &#x27A1; </span> <span class="korrekt-span">3836</span></p>
+          </li>
+        </ul>
+      </section>
+      <div id="link-container" class="d-flex-row">
+        <a href="#" id="erneut-link">nochmal</a>
       </div>
     </section>
   </div>
