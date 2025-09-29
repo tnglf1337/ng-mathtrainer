@@ -1,33 +1,36 @@
 <section id="uebung-konfiguration-container" class="d-flex-row">
   <section id="modus-container" class="w-100 d-flex-row centered">
-    <form id="modus-form" class="form d-flex-row">
+    <form id="modus-form" class="form d-flex-row" [formGroup]="modusForm.getForm()">
       <div class="d-flex-row centered m-2">
         <label>Modus:</label>
       </div>
       <div class="m-2">
-        <select class="form-select">
-          <option>+ Addition</option>
-          <option>- Subtraktion</option>
-          <option>* Multiplikation</option>
-          <option>/ Division</option>
-          <option>Gemischt</option>
+        <select class="form-select" formControlName="modus">
+          <option [ngValue]="ModusTyp.ADDITION">+ Addition</option>
+          <option [ngValue]="ModusTyp.SUBTRAKTION">- Subtraktion</option>
+          <option [ngValue]="ModusTyp.MULTIPLIKATION">* Multiplikation</option>
+          <option [ngValue]="ModusTyp.DIVISION">/ Division</option>
+          <option [ngValue]="ModusTyp.GEMISCHT">Gemischt</option>
         </select>
       </div>
     </form>
   </section>
-  <section id="schwierigkeit-container" class="w-100 d-flex-row centered ">
-    <form id="schwierigkeit-form" class="form d-flex-row">
+  <section id="schwierigkeit-container" class="w-100 d-flex-row centered">
+    <form id="schwierigkeit-form" class="form d-flex-row" [formGroup]="schwierigkeitForm.getForm()">
       <div class="d-flex-row centered m-2">
         <label>Schwierigkeit:</label>
       </div>
       <div class="m-2">
-        <select class="form-select">
-          <option>Einfach</option>
-          <option>Mittel</option>
-          <option>Schwer</option>
+        <select class="form-select"  formControlName="schwierigkeit">
+          <option [ngValue]="Schwierigkeit.EINFACH">Einfach</option>
+          <option [ngValue]="Schwierigkeit.MITTEL">Mittel</option>
+          <option [ngValue]="Schwierigkeit.SCHWER">Schwer</option>
         </select>
       </div>
     </form>
+  </section>
+  <section>
+    <button type="button" (click)="uebungStarten()">Start</button>
   </section>
 </section>
 
@@ -40,9 +43,15 @@
       <p>88888+99999+99999+99999</p>
     </div>
     <div id="loesung-input-container" class="d-flex-row centered">
-      <form id="loesung-form">
+      <form id="loesung-form" [formGroup]="loesungForm">
         <label type="hidden" aria-label="Eingabefeld für die Lösung"></label>
-        <input id="loesung-input" type="text" required maxlength="10">
+        <input id="loesung-input"
+               type="text"
+               required
+               maxlength="10"
+               (keydown)="evaluiereLoesung($event)"
+               formControlName="loesung"
+        >
       </form>
     </div>
     <section id="post-uebung-statistik-container">
