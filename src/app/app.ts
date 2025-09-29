@@ -4,7 +4,7 @@ import {TrainComponent} from './train-component/train-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TrainComponent],
+  imports: [TrainComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css', 'debug.css']
 })
