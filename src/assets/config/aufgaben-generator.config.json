@@ -2,57 +2,69 @@
   "add": {
     "0": {
       "numberRange": [2, 100],
-      "terms": 2
+      "terms": 2,
+      "uebungszeitSekunden": 120
     },
     "1": {
       "numberRange": [10, 10000],
-      "terms": 3
+      "terms": 3,
+      "uebungszeitSekunden": 180
     },
     "2": {
       "numberRange": [10000, 99999],
-      "terms": 4
+      "terms": 4,
+      "uebungszeitSekunden": 240
     }
   },
   "sub": {
     "0": {
       "numberRange": [-100, 100],
-      "terms": 2
+      "terms": 2,
+      "uebungszeitSekunden": 120
     },
     "1": {
       "numberRange": [-10000, 10000],
-      "terms": 3
+      "terms": 3,
+      "uebungszeitSekunden": 180
     },
     "2": {
       "numberRange": [-99999, 99999],
-      "terms": 4
+      "terms": 4,
+      "uebungszeitSekunden": 240
     }
   },
   "mul": {
     "0": {
       "numberRange": [-10, 10],
-      "terms": 2
+      "terms": 2,
+      "uebungszeitSekunden": 120
     },
     "1": {
       "numberRange": [-20, 20],
-      "terms": 2
+      "terms": 2,
+      "uebungszeitSekunden": 180
     },
     "2": {
       "numberRange": [-30, 30],
-      "terms": 3
+      "terms": 3,
+      "uebungszeitSekunden": 240
     }
   },
   "div": {
     "0": {
       "numberRange":[-20,100],
-      "terms": 2
+      "terms": 2,
+      "uebungszeitSekunden": 120
     },
     "1": {
       "numberRange":[-50,500],
-      "terms": 2
+      "terms": 2,
+      "uebungszeitSekunden": 180
     },
     "2": {
       "numberRange":[-100,1000],
-      "terms": 3
+      "terms": 3,
+      "uebungszeitSekunden": 240
     }
   }
 }
