@@ -5,11 +5,11 @@ import {SchwierigkeitForm} from './domain/schwierigkeit-form';
 import {ModusTyp} from './domain/modus';
 import {Schwierigkeit} from './domain/schwierigkeit';
 import {UebungService} from './uebung.service';
-import {NgIf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-train-component',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, NgForOf],
   standalone: true,
   templateUrl: './train-component.html',
   styleUrls: ['./train-component.css', '../debug.css']
@@ -52,6 +52,18 @@ export class TrainComponent {
 
   private getLoesung() : string {
     return this.loesungForm.get("loesung")?.value;
+  }
+
+  get totaleAufgaben() : number {
+    return this.uebungService.uebungStatistik.totalAufgaben
+  }
+
+  get korrekteLoesungen() : number {
+    return this.uebungService.uebungStatistik.korrekteLoesung
+  }
+
+  get falscheLoesungen() : number {
+    return this.uebungService.uebungStatistik.falscheLoesung
   }
 
   protected readonly ModusTyp = ModusTyp;

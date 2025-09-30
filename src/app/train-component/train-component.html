@@ -58,26 +58,20 @@
     <section id="post-uebung-statistik-container" *ngIf="uebungService.istUebungBeendet()">
       <div id="uebung-ergebnis-container" class="d-flex-row centered gap-10">
         <div>
-          <p>Gelöst: <span>30</span></p>
+          <p>Gelöst: <span>{{totaleAufgaben}}</span></p>
         </div>
         <div>
-          <p>Korrekt: <span class="korrekt-span">26</span></p>
+          <p>Korrekt: <span class="korrekt-span">{{korrekteLoesungen}}</span></p>
         </div>
         <div>
-          <p>Falsch: <span class="falsch-span">4</span></p>
+          <p>Falsch: <span class="falsch-span">{{falscheLoesungen}}</span></p>
         </div>
       </div>
       <section id="falsch-events-container">
         <h5>Falsch beantwortet</h5>
         <ul>
-          <li>
-            <p><span>3763+73</span> = <span class="falsch-span"><s>1111</s></span> <span> &#x27A1; </span> <span class="korrekt-span">3836</span></p>
-          </li>
-          <li>
-            <p><span>3763+73</span> = <span class="falsch-span"><s>1111</s></span> <span> &#x27A1; </span> <span class="korrekt-span">3836</span></p>
-          </li>
-          <li>
-            <p><span>3763+73</span> = <span class="falsch-span"><s>1111</s></span> <span> &#x27A1; </span> <span class="korrekt-span">3836</span></p>
+          <li *ngFor="let falscheLoesung of uebungService.alleFalschenLoesungen">
+            <p><span>{{falscheLoesung.term}}</span> = <span class="falsch-span"><s>{{falscheLoesung.actualLoesung}}</s></span> <span> &#x27A1; </span> <span class="korrekt-span">{{falscheLoesung.expectedLoesung}}</span></p>
           </li>
         </ul>
       </section>
