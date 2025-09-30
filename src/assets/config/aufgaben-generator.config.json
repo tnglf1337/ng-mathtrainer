@@ -43,15 +43,15 @@
   },
   "div": {
     "0": {
-      "numberRange":[20,100],
+      "numberRange":[-20,100],
       "terms": 2
     },
     "1": {
-      "numberRange":[50,500],
+      "numberRange":[-50,500],
       "terms": 2
     },
     "2": {
-      "numberRange":[100,1000],
+      "numberRange":[-100,1000],
       "terms": 3
     }
   }
