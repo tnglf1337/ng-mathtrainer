@@ -32,6 +32,7 @@ export class TrainComponent {
       const loesung = this.getLoesung();
       this.uebungService.evaluiereBenutzerLoesung(loesung)
       this.uebungService.uebungsaufgabeGenerieren();
+      this.loesungForm.reset()
     }
   }
 
