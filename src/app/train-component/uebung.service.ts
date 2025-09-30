@@ -3,13 +3,14 @@ import config from '../../assets/config/aufgaben-generator.config.json'
 import {ModusTyp} from './domain/modus';
 import {AufgabeGenerator} from './aufgabe-generator';
 import {Aufgabe} from './domain/aufgabe';
+import {signal, WritableSignal} from '@angular/core';
 
 export class UebungService {
   modus :  ModusTyp;
   schwierigkeit : Schwierigkeit;
   aufgabenGenerator : AufgabeGenerator;
   timerId : number | undefined = undefined;
-  sekunden : number = 1;
+  sekunden: WritableSignal<number> = signal(1);
 
   aktuelleAufgabe : Aufgabe = {} as Aufgabe;
   uebungStatistik = {
@@ -32,7 +33,7 @@ export class UebungService {
   public uebungStarten() : void {
     this.timerId = setInterval(() => {
       console.log(`Übung läuft: ${this.sekunden}s`)
-      this.sekunden--
+      this.sekunden.update(value => value - 1);
 
       if(this.istUebungBeendet()) this.beendeTimer()
 
@@ -40,7 +41,7 @@ export class UebungService {
   }
 
   public istUebungBeendet() : boolean {
-    return this.sekunden == 0
+    return this.sekunden() === 0
   }
 
   public beendeTimer() :void {
@@ -65,7 +66,7 @@ export class UebungService {
   }
 
   zustandZuruecksetzen() : void {
-    this.sekunden = 1;
+    this.sekunden.set(1)
     this.uebungStatistik.totalAufgaben = 0
     this.uebungStatistik.korrekteLoesung = 0;
     this.uebungStatistik.falscheLoesung = 0;
@@ -80,20 +81,28 @@ export class UebungService {
     ];
   }
 
+  get aktuellerTerm() :string {
+    return this.aktuelleAufgabe.term
+  }
+
+  get aktuelleSekunden() : number {
+    return this.sekunden()
+  }
+
   private initSekunden() {
     switch (this.modus) {
       case ModusTyp.ADDITION: {
         switch (this.schwierigkeit) {
           case Schwierigkeit.EINFACH: {
-            this.sekunden = config.add["0"].uebungszeitSekunden
+            this.sekunden.set(config.add["0"].uebungszeitSekunden)
             break;
           }
           case Schwierigkeit.MITTEL: {
-            this.sekunden = config.add["1"].uebungszeitSekunden
+            this.sekunden.set(config.add["1"].uebungszeitSekunden)
             break;
           }
           case Schwierigkeit.SCHWER: {
-            this.sekunden = config.add["2"].uebungszeitSekunden
+            this.sekunden.set(config.add["2"].uebungszeitSekunden)
             break;
           }
         }
@@ -102,15 +111,15 @@ export class UebungService {
       case ModusTyp.SUBTRAKTION: {
         switch (this.schwierigkeit) {
           case Schwierigkeit.EINFACH: {
-            this.sekunden = config.add["0"].uebungszeitSekunden
+            this.sekunden.set(config.sub["0"].uebungszeitSekunden)
             break;
           }
           case Schwierigkeit.MITTEL: {
-            this.sekunden = config.add["1"].uebungszeitSekunden
+            this.sekunden.set(config.sub["1"].uebungszeitSekunden)
             break;
           }
           case Schwierigkeit.SCHWER: {
-            this.sekunden = config.add["2"].uebungszeitSekunden
+            this.sekunden.set(config.sub["2"].uebungszeitSekunden)
             break;
           }
         }
@@ -119,15 +128,15 @@ export class UebungService {
       case ModusTyp.MULTIPLIKATION: {
         switch (this.schwierigkeit) {
           case Schwierigkeit.EINFACH: {
-            this.sekunden = config.add["0"].uebungszeitSekunden
+            this.sekunden.set(config.mul["0"].uebungszeitSekunden)
             break;
           }
           case Schwierigkeit.MITTEL: {
-            this.sekunden = config.add["1"].uebungszeitSekunden
+            this.sekunden.set(config.mul["1"].uebungszeitSekunden)
             break;
           }
           case Schwierigkeit.SCHWER: {
-            this.sekunden = config.add["2"].uebungszeitSekunden
+            this.sekunden.set(config.mul["2"].uebungszeitSekunden)
             break;
           }
         }
@@ -136,15 +145,15 @@ export class UebungService {
       case ModusTyp.DIVISION: {
         switch (this.schwierigkeit) {
           case Schwierigkeit.EINFACH: {
-            this.sekunden = config.add["0"].uebungszeitSekunden
+            this.sekunden.set(config.div["0"].uebungszeitSekunden)
             break;
           }
           case Schwierigkeit.MITTEL: {
-            this.sekunden = config.add["1"].uebungszeitSekunden
+            this.sekunden.set(config.div["1"].uebungszeitSekunden)
             break;
           }
           case Schwierigkeit.SCHWER: {
-            this.sekunden = config.add["2"].uebungszeitSekunden
+            this.sekunden.set(config.div["2"].uebungszeitSekunden)
             break;
           }
         }
