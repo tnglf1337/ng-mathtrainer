@@ -28,7 +28,11 @@ export class TrainComponent {
     protected schwierigkeitForm : SchwierigkeitForm) {}
 
   evaluiereLoesung($event: KeyboardEvent) {
-    const loesung = this.getLoesung($event);
+    if ($event.key === 'Enter') {
+      const loesung = this.getLoesung();
+      this.uebungService.evaluiereBenutzerLoesung(loesung)
+      this.uebungService.uebungsaufgabeGenerieren();
+    }
   }
 
   uebungStarten() {
@@ -45,13 +49,8 @@ export class TrainComponent {
     this.istUebungGestartet = false
   }
 
-  private getLoesung($event: KeyboardEvent) : number {
-    if ($event.key === 'Enter') {
-      const loesung = this.loesungForm.get("loesung")?.value
-      return parseInt(loesung);
-    } else {
-      return 0
-    }
+  private getLoesung() : string {
+    return this.loesungForm.get("loesung")?.value;
   }
 
   protected readonly ModusTyp = ModusTyp;
