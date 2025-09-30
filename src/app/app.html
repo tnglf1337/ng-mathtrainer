@@ -3,11 +3,14 @@
     <h1>MathTrainer</h1>
     <ul>
       <li>
-        <a href="#" aria-label="Link zu vergangenen Übungsrunden">History</a>
+        <a [routerLink]="'/uebung'" aria-label="Link zu vergangenen Übungsrunden">Übung</a>
+      </li>
+      <li>
+        <a [routerLink]="'/history'" aria-label="Link zu vergangenen Übungsrunden">History</a>
       </li>
     </ul>
   </nav>
 </header>
 <main>
-  <app-train-component></app-train-component>
+  <router-outlet></router-outlet>
 </main>
