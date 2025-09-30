@@ -3,22 +3,22 @@ import config from '../../assets/config/aufgaben-generator.config.json'
 import {ModusTyp} from './domain/modus';
 import {AufgabeGenerator} from './aufgabe-generator';
 import {Aufgabe} from './domain/aufgabe';
-import {signal, WritableSignal} from '@angular/core';
+import {inject, signal, WritableSignal} from '@angular/core';
 import {FalscheLoesung, FalscheLoesungenHistory} from './domain/falsche-loesungen-history';
 import { createUebungEvent } from './domain/uebung';
 import {UebungApiService} from '../api/uebung-api.service';
 
 export class UebungService {
-  apiService : UebungApiService;
+  apiService : UebungApiService = inject(UebungApiService);
 
-  modus :  ModusTyp;
-  schwierigkeit : Schwierigkeit;
-  aufgabenGenerator : AufgabeGenerator;
+  modus! :  ModusTyp;
+  schwierigkeit! : Schwierigkeit;
+  aufgabenGenerator! : AufgabeGenerator;
   timerId : number | undefined = undefined;
   sekunden: WritableSignal<number> = signal(1);
 
   aktuelleAufgabe : WritableSignal<Aufgabe> = signal({term: "", loesung: 0});
-  falscheLoesungenHistory : FalscheLoesungenHistory;
+  falscheLoesungenHistory! : FalscheLoesungenHistory;
 
   uebungStatistik = {
     totalAufgaben: 0,
@@ -26,15 +26,11 @@ export class UebungService {
     falscheLoesung: 0
   }
 
-  constructor(
-    modus :  ModusTyp,
-    schwierigkeit : Schwierigkeit)
-  {
+  constructor(modus : ModusTyp, schwierigkeit : Schwierigkeit) {
     this.modus = modus;
-    this.schwierigkeit  = schwierigkeit;
+    this.schwierigkeit = schwierigkeit;
     this.aufgabenGenerator = new AufgabeGenerator(this.modus, this.schwierigkeit);
     this.falscheLoesungenHistory  = new FalscheLoesungenHistory();
-    this.apiService = new UebungApiService();
 
     this.initSekunden();
   }
