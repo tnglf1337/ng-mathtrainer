@@ -5,8 +5,12 @@ import {AufgabeGenerator} from './aufgabe-generator';
 import {Aufgabe} from './domain/aufgabe';
 import {signal, WritableSignal} from '@angular/core';
 import {FalscheLoesung, FalscheLoesungenHistory} from './domain/falsche-loesungen-history';
+import { createUebungEvent } from './domain/uebung';
+import {UebungApiService} from '../api/uebung-api.service';
 
 export class UebungService {
+  apiService : UebungApiService;
+
   modus :  ModusTyp;
   schwierigkeit : Schwierigkeit;
   aufgabenGenerator : AufgabeGenerator;
@@ -30,6 +34,7 @@ export class UebungService {
     this.schwierigkeit  = schwierigkeit;
     this.aufgabenGenerator = new AufgabeGenerator(this.modus, this.schwierigkeit);
     this.falscheLoesungenHistory  = new FalscheLoesungenHistory();
+    this.apiService = new UebungApiService();
 
     this.initSekunden();
   }
@@ -40,8 +45,17 @@ export class UebungService {
       console.log(`Übung läuft: ${this.sekunden}s`)
       this.sekunden.update(value => value - 1);
 
-      if(this.istUebungBeendet()) this.beendeTimer()
-
+      if(this.istUebungBeendet()) {
+        this.beendeTimer()
+        const uebungEvent = createUebungEvent(
+          "testuser",
+          this.modus,
+          this.schwierigkeit,
+          this.uebungStatistik.korrekteLoesung,
+          this.uebungStatistik.falscheLoesung
+        )
+        this.apiService.postUebungEvent(uebungEvent)
+      }
     }, 1000)
   }
 
@@ -78,14 +92,6 @@ export class UebungService {
     this.uebungStatistik.korrekteLoesung = 0;
     this.uebungStatistik.falscheLoesung = 0;
     this.aktuelleAufgabe.set({term: "", loesung: 0})
-  }
-
-  get postGameStatistik() : number[] {
-    return [
-      this.uebungStatistik.totalAufgaben,
-      this.uebungStatistik.korrekteLoesung,
-      this.uebungStatistik.falscheLoesung
-    ];
   }
 
   get aktuellerTerm() :string {
