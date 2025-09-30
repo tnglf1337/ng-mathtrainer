@@ -14,6 +14,12 @@ app.listen(11000, () => {
  console.log("started server on port 11000");
 })
 
+app.get('find-events-by-username/:username', async (req, res) => {
+  const username = req.params.username;
+  const events = await UebungEvent.find({ username: username });
+  res.json(events);
+})
+
 app.post('/uebung-event', async (req, res) => {
   const neuesUebungEvent = new UebungEvent(req.body);
   await neuesUebungEvent.save();
