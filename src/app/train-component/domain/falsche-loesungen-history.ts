@@ -1,4 +1,4 @@
-interface FalscheLoesung {
+export interface FalscheLoesung {
   term : string;
   expectedLoesung : string;
   actualLoesung : string;
