@@ -10,12 +10,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr *ngFor="let event of uebungEvents">
+        <td>{{event.beendetAm}}</td>
+        <td>{{event.modus}}</td>
+        <td>{{event.schwierigkeit}}</td>
+        <td>{{event.korrektLoesungen}}</td>
+        <td>{{event.falscheLoesungen}}</td>
       </tr>
     </tbody>
   </table>
