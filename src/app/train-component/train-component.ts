@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ModusForm} from './domain/modus-form';
 import {SchwierigkeitForm} from './domain/schwierigkeit-form';
@@ -16,7 +16,7 @@ import {NgForOf, NgIf} from '@angular/common';
 })
 export class TrainComponent {
 
-  uebungService! : UebungService;
+  uebungService : UebungService = inject(UebungService);
   istUebungGestartet : boolean = false;
 
   loesungForm : FormGroup = new FormGroup({
@@ -39,7 +39,7 @@ export class TrainComponent {
   uebungStarten() {
     const gewaehlterModus = this.modusForm.getModus();
     const gewaehlteSchwierigkeit = this.schwierigkeitForm.getSchwierigkeit();
-    this.uebungService = new UebungService(gewaehlterModus, gewaehlteSchwierigkeit);
+    this.uebungService.initService(gewaehlterModus, gewaehlteSchwierigkeit);
     this.uebungService.uebungStarten()
     this.istUebungGestartet = true
   }

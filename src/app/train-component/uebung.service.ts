@@ -3,11 +3,14 @@ import config from '../../assets/config/aufgaben-generator.config.json'
 import {ModusTyp} from './domain/modus';
 import {AufgabeGenerator} from './aufgabe-generator';
 import {Aufgabe} from './domain/aufgabe';
-import {inject, signal, WritableSignal} from '@angular/core';
+import {inject, Injectable, signal, WritableSignal} from '@angular/core';
 import {FalscheLoesung, FalscheLoesungenHistory} from './domain/falsche-loesungen-history';
 import { createUebungEvent } from './domain/uebung';
 import {UebungApiService} from '../api/uebung-api.service';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class UebungService {
   apiService : UebungApiService = inject(UebungApiService);
 
@@ -26,7 +29,7 @@ export class UebungService {
     falscheLoesung: 0
   }
 
-  constructor(modus : ModusTyp, schwierigkeit : Schwierigkeit) {
+  initService(modus : ModusTyp, schwierigkeit : Schwierigkeit) {
     this.modus = modus;
     this.schwierigkeit = schwierigkeit;
     this.aufgabenGenerator = new AufgabeGenerator(this.modus, this.schwierigkeit);
