@@ -14,6 +14,9 @@ import {Schwierigkeit} from './domain/schwierigkeit';
 })
 export class TrainComponent {
 
+  uebungService! : UebungService;
+  istUebungGestartet : boolean = false;
+
   loesungForm : FormGroup = new FormGroup({
     loesung: new FormControl("", Validators.required),
   })
