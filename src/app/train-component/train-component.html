@@ -30,7 +30,8 @@
     </form>
   </section>
   <section>
-    <button type="button" (click)="uebungStarten()">Start</button>
+    <button type="button" (click)="uebungStarten()" *ngIf="!istUebungGestartet">Start</button>
+    <button type="button" (click)="uebungAbbrechen()" *ngIf="istUebungGestartet">Abbrechen</button>
   </section>
 </section>
 
