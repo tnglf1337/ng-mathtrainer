@@ -6,10 +6,11 @@ import {ModusTyp} from './domain/modus';
 import {Schwierigkeit} from './domain/schwierigkeit';
 import {UebungService} from './uebung.service';
 import {NgForOf, NgIf} from '@angular/common';
+import { SekundenToHmsPipe } from '../sekunden-anzeige.pipe'
 
 @Component({
   selector: 'app-train-component',
-  imports: [ReactiveFormsModule, NgIf, NgForOf],
+  imports: [ReactiveFormsModule, NgIf, NgForOf, SekundenToHmsPipe],
   standalone: true,
   templateUrl: './train-component.html',
   styleUrls: ['./train-component.css', '../debug.css']

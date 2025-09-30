@@ -38,7 +38,7 @@
 <section id="uebung-container" *ngIf="istUebungGestartet">
   <div id="uebung-ansicht-container">
     <div id="zeit-container">
-      <p>{{uebungService.aktuelleSekunden}}s</p>
+      <p>{{uebungService.aktuelleSekunden | sekundenToHms}}</p>
     </div>
     <div id="aufgabe-container">
       <p>{{uebungService.aktuellerTerm}}</p>
