@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ModusForm} from './domain/modus-form';
 import {SchwierigkeitForm} from './domain/schwierigkeit-form';
 import {ModusTyp} from './domain/modus';
 import {Schwierigkeit} from './domain/schwierigkeit';
+import {UebungService} from './uebung.service';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-train-component',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   standalone: true,
   templateUrl: './train-component.html',
   styleUrls: ['./train-component.css', '../debug.css']
@@ -32,7 +34,9 @@ export class TrainComponent {
   uebungStarten() {
     const gewaehlterModus = this.modusForm.getModus();
     const gewaehlteSchwierigkeit = this.schwierigkeitForm.getSchwierigkeit();
-
+    this.uebungService = new UebungService(gewaehlterModus, gewaehlteSchwierigkeit);
+    this.uebungService.uebungStarten()
+    this.istUebungGestartet = true
   }
 
   private getLoesung($event: KeyboardEvent) : number {
