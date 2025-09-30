@@ -12,7 +12,8 @@ export class UebungService {
   timerId : number | undefined = undefined;
   sekunden: WritableSignal<number> = signal(1);
 
-  aktuelleAufgabe : Aufgabe = {} as Aufgabe;
+  aktuelleAufgabe : WritableSignal<Aufgabe> = signal({term: "", loesung: 0});
+
   uebungStatistik = {
     totalAufgaben: 0,
     korrekteLoesung: 0,
@@ -31,6 +32,7 @@ export class UebungService {
   }
 
   public uebungStarten() : void {
+    this.uebungsaufgabeGenerieren()
     this.timerId = setInterval(() => {
       console.log(`Übung läuft: ${this.sekunden}s`)
       this.sekunden.update(value => value - 1);
@@ -51,12 +53,12 @@ export class UebungService {
 
   public uebungsaufgabeGenerieren() : void {
     this.uebungStatistik.totalAufgaben++;
-    this.aktuelleAufgabe = this.aufgabenGenerator.generateAufgabe();
+    this.aktuelleAufgabe.set(this.aufgabenGenerator.generateAufgabe());
   }
 
   public evaluiereBenutzerLoesung(benutzerLoesung : string) : boolean {
     const loesungAsNumber = parseInt(benutzerLoesung);
-    if(this.aktuelleAufgabe.loesung === loesungAsNumber) {
+    if(this.aktuelleAufgabe().loesung === loesungAsNumber) {
       this.uebungStatistik.korrekteLoesung++;
       return true;
     } else {
@@ -70,7 +72,7 @@ export class UebungService {
     this.uebungStatistik.totalAufgaben = 0
     this.uebungStatistik.korrekteLoesung = 0;
     this.uebungStatistik.falscheLoesung = 0;
-    this.aktuelleAufgabe = {} as Aufgabe;
+    this.aktuelleAufgabe.set({term: "", loesung: 0})
   }
 
   get postGameStatistik() : number[] {
@@ -82,7 +84,7 @@ export class UebungService {
   }
 
   get aktuellerTerm() :string {
-    return this.aktuelleAufgabe.term
+    return this.aktuelleAufgabe().term
   }
 
   get aktuelleSekunden() : number {
