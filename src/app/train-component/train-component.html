@@ -29,9 +29,9 @@
       </div>
     </form>
   </section>
-  <section>
-    <button type="button" (click)="uebungStarten()" *ngIf="!istUebungGestartet">Start</button>
-    <button type="button" (click)="uebungAbbrechen()" *ngIf="istUebungGestartet">Abbrechen</button>
+  <section id="button-container" class="d-flex-row centered">
+    <button id="start-btn" class="btn" type="button" (click)="uebungStarten()" *ngIf="!istUebungGestartet">Start</button>
+    <button id="abbruch-btn" class="btn" type="button" (click)="uebungAbbrechen()" *ngIf="istUebungGestartet">Abbrechen</button>
   </section>
 </section>
 

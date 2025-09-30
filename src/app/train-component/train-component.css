@@ -21,6 +21,32 @@
   gap: 10px;
 }
 
+#button-container {
+  width: 500px;
+}
+
+.btn {
+  width: 125px;
+  border-radius: 15px !important;
+  font-weight: bold;
+}
+
+#start-btn {
+  background-color: #7dc8d7;
+}
+
+#start-btn:hover {
+  background-color: #44bfd9;
+}
+
+#abbruch-btn {
+  background-color: #f38484;
+}
+
+#abbruch-btn:hover {
+  background-color: #ef5e5e;
+}
+
 #modus-container {
   height: 100px;
 }
