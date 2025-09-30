@@ -4,6 +4,7 @@ import {ModusTyp} from './domain/modus';
 import {AufgabeGenerator} from './aufgabe-generator';
 import {Aufgabe} from './domain/aufgabe';
 import {signal, WritableSignal} from '@angular/core';
+import {FalscheLoesungenHistory} from './domain/falsche-loesungen-history';
 
 export class UebungService {
   modus :  ModusTyp;
@@ -13,6 +14,7 @@ export class UebungService {
   sekunden: WritableSignal<number> = signal(1);
 
   aktuelleAufgabe : WritableSignal<Aufgabe> = signal({term: "", loesung: 0});
+  falscheLoesungenHistory : FalscheLoesungenHistory;
 
   uebungStatistik = {
     totalAufgaben: 0,
@@ -27,6 +29,7 @@ export class UebungService {
     this.modus = modus;
     this.schwierigkeit  = schwierigkeit;
     this.aufgabenGenerator = new AufgabeGenerator(this.modus, this.schwierigkeit);
+    this.falscheLoesungenHistory  = new FalscheLoesungenHistory();
 
     this.initSekunden();
   }
@@ -63,6 +66,7 @@ export class UebungService {
       return true;
     } else {
       this.uebungStatistik.falscheLoesung++;
+      this.falscheLoesungenHistory.pushFalscheLoesung(this.aktuelleAufgabe().term, this.aktuelleAufgabe().loesung, benutzerLoesung)
       return false;
     }
   }
