@@ -39,6 +39,12 @@ export class TrainComponent {
     this.istUebungGestartet = true
   }
 
+  uebungAbbrechen() {
+    this.uebungService.beendeTimer()
+    this.uebungService.zustandZuruecksetzen()
+    this.istUebungGestartet = false
+  }
+
   private getLoesung($event: KeyboardEvent) : number {
     if ($event.key === 'Enter') {
       const loesung = this.loesungForm.get("loesung")?.value
