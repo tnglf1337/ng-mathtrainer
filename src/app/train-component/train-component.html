@@ -55,7 +55,7 @@
         >
       </form>
     </div>
-    <section id="post-uebung-statistik-container">
+    <section id="post-uebung-statistik-container" *ngIf="uebungService.istUebungBeendet()">
       <div id="uebung-ergebnis-container" class="d-flex-row centered gap-10">
         <div>
           <p>Gelöst: <span>30</span></p>
