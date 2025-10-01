@@ -1,9 +1,17 @@
 #history-container {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 table {
   width: 100%;
-  margin-left: 20px;
+  margin: 0;
+}
+
+.history-table {
+  --bs-table-border-color: #646464;
+}
+
+th, td {
+  background-color: #D9D9D9;
 }
