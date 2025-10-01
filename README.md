@@ -9,6 +9,7 @@ Each training session basic statistics are saved (# correct answers, # wrong ans
 
 ## Requirements
 - Docker
+- npm
 
 ## Installation
 1. Download the repo
