@@ -4,6 +4,11 @@ import {HistoryComponent} from './history-component/history-component';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'uebung',
+    pathMatch: 'full'
+  },
+  {
     path: 'uebung',
     component: TrainComponent
   },

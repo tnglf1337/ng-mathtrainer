@@ -1,5 +1,5 @@
-<section id="history-container" class="border-r">
-  <table class="border-b">
+<section id="history-container">
+  <table class="table history-table">
     <thead>
       <tr>
         <th>Datum</th>
@@ -11,9 +11,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let event of uebungEvents">
-        <td>{{event.beendetAm}}</td>
-        <td>{{event.modus}}</td>
-        <td>{{event.schwierigkeit}}</td>
+        <td>{{event.beendetAm | datumDe}}</td>
+        <td>{{event.modus | modusTransform}}</td>
+        <td>{{event.schwierigkeit | schwierigkeitTransform}}</td>
         <td>{{event.korrektLoesungen}}</td>
         <td>{{event.falscheLoesungen}}</td>
       </tr>

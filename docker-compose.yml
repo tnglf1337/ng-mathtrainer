@@ -1,0 +1,27 @@
+services:
+  mathtrain-frontend:
+    container_name: mathtrain-frontend
+    build: ./frontend
+    ports:
+      - "80:80"
+    expose:
+      - 80
+    networks:
+      - internalnet
+  mathtrain-backend:
+    container_name: mathtrain-backend
+    build: ./backend
+    ports:
+      - "11000:11000"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: db
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+
+networks:
+  internalnet:
+    driver: bridge
