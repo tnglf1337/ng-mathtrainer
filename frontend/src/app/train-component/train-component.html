@@ -30,12 +30,12 @@
     </form>
   </section>
   <section id="button-container" class="d-flex-row centered">
-    <button id="start-btn" class="btn" type="button" (click)="uebungStarten()" *ngIf="!istUebungGestartet">Start</button>
-    <button id="abbruch-btn" class="btn" type="button" (click)="uebungAbbrechen()" *ngIf="istUebungGestartet">Abbrechen</button>
+    <button id="start-btn" class="btn" type="button" (click)="uebungStarten()" *ngIf="!istUebungGestartet()">Start</button>
+    <button id="abbruch-btn" class="btn" type="button" (click)="uebungAbbrechen()" *ngIf="istUebungGestartet()">Abbrechen</button>
   </section>
 </section>
 
-<section id="uebung-container" *ngIf="istUebungGestartet">
+<section id="uebung-container" *ngIf="istUebungGestartet()" class="border-b">
   <div id="uebung-ansicht-container">
     <div id="zeit-container">
       <p>{{uebungService.aktuelleSekunden | sekundenToHms}}</p>
@@ -55,29 +55,29 @@
         >
       </form>
     </div>
-    <section id="post-uebung-statistik-container" *ngIf="uebungService.istUebungBeendet()">
-      <div id="uebung-ergebnis-container" class="d-flex-row centered gap-10">
-        <div>
-          <p>Gelöst: <span>{{totaleAufgaben}}</span></p>
-        </div>
-        <div>
-          <p>Korrekt: <span class="korrekt-span">{{korrekteLoesungen}}</span></p>
-        </div>
-        <div>
-          <p>Falsch: <span class="falsch-span">{{falscheLoesungen}}</span></p>
-        </div>
-      </div>
-      <section id="falsch-events-container">
-        <h5>Falsch beantwortet</h5>
-        <ul>
-          <li *ngFor="let falscheLoesung of uebungService.alleFalschenLoesungen">
-            <p><span>{{falscheLoesung.term}}</span> = <span class="falsch-span"><s>{{falscheLoesung.actualLoesung}}</s></span> <span> &#x27A1; </span> <span class="korrekt-span">{{falscheLoesung.expectedLoesung}}</span></p>
-          </li>
-        </ul>
-      </section>
-      <div id="link-container" class="d-flex-row">
-        <a href="#" id="erneut-link">nochmal</a>
-      </div>
-    </section>
+  </div>
+</section>
+<section id="post-uebung-statistik-container" *ngIf="uebungService.istUebungBeendet()">
+  <div id="uebung-ergebnis-container" class="d-flex-row centered gap-10">
+    <div>
+      <p>Gelöst: <span>{{totaleAufgaben}}</span></p>
+    </div>
+    <div>
+      <p>Korrekt: <span class="korrekt-span">{{korrekteLoesungen}}</span></p>
+    </div>
+    <div>
+      <p>Falsch: <span class="falsch-span">{{falscheLoesungen}}</span></p>
+    </div>
+  </div>
+  <section id="falsch-events-container">
+    <h5>Falsch beantwortet</h5>
+    <ul>
+      <li *ngFor="let falscheLoesung of uebungService.alleFalschenLoesungen">
+        <p><span>{{falscheLoesung.term}}</span> = <span class="falsch-span"><s>{{falscheLoesung.actualLoesung}}</s></span> <span> &#x27A1; </span> <span class="korrekt-span">{{falscheLoesung.expectedLoesung}}</span></p>
+      </li>
+    </ul>
+  </section>
+  <div id="link-container" class="d-flex-row">
+    <a href="#" id="erneut-link">nochmal</a>
   </div>
 </section>

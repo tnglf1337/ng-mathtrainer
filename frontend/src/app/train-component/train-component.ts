@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal, WritableSignal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ModusForm} from './domain/modus-form';
 import {SchwierigkeitForm} from './domain/schwierigkeit-form';
@@ -18,7 +18,7 @@ import { SekundenToHmsPipe } from '../sekunden-anzeige.pipe'
 export class TrainComponent {
 
   uebungService : UebungService = inject(UebungService);
-  istUebungGestartet : boolean = false;
+  istUebungGestartet : WritableSignal<boolean> = signal(false);
 
   loesungForm : FormGroup = new FormGroup({
     loesung: new FormControl("", Validators.required),
@@ -40,15 +40,13 @@ export class TrainComponent {
   uebungStarten() {
     const gewaehlterModus = this.modusForm.getModus();
     const gewaehlteSchwierigkeit = this.schwierigkeitForm.getSchwierigkeit();
-    this.uebungService.initService(gewaehlterModus, gewaehlteSchwierigkeit);
+    this.uebungService.initService(gewaehlterModus, gewaehlteSchwierigkeit, this.istUebungGestartet);
     this.uebungService.uebungStarten()
-    this.istUebungGestartet = true
   }
 
   uebungAbbrechen() {
     this.uebungService.beendeTimer()
     this.uebungService.zustandZuruecksetzen()
-    this.istUebungGestartet = false
   }
 
   private getLoesung() : string {

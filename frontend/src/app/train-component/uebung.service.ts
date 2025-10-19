@@ -19,6 +19,7 @@ export class UebungService {
   aufgabenGenerator! : AufgabeGenerator;
   timerId : number | undefined = undefined;
   sekunden: WritableSignal<number> = signal(1);
+  istUebungGestartet : WritableSignal<boolean> = signal(false)
 
   aktuelleAufgabe : WritableSignal<Aufgabe> = signal({term: "", loesung: 0});
   falscheLoesungenHistory! : FalscheLoesungenHistory;
@@ -28,9 +29,10 @@ export class UebungService {
     falscheLoesung: 0
   }
 
-  initService(modus : ModusTyp, schwierigkeit : Schwierigkeit) {
+  initService(modus : ModusTyp, schwierigkeit : Schwierigkeit, istUebungGestartet : WritableSignal<boolean>) {
     this.modus = modus;
     this.schwierigkeit = schwierigkeit;
+    this.istUebungGestartet = istUebungGestartet;
     this.aufgabenGenerator = new AufgabeGenerator(this.modus, this.schwierigkeit);
     this.falscheLoesungenHistory  = new FalscheLoesungenHistory();
 
@@ -38,6 +40,7 @@ export class UebungService {
   }
 
   public uebungStarten() : void {
+    this.istUebungGestartet.set(true)
     this.uebungsaufgabeGenerieren()
     this.timerId = setInterval(() => {
       console.log(`Übung läuft: ${this.sekunden}s`)
@@ -53,6 +56,7 @@ export class UebungService {
           this.uebungStatistik.falscheLoesung
         )
         this.apiService.postUebungEvent(uebungEvent)
+        this.istUebungGestartet.set(false)
       }
     }, 1000)
   }
@@ -64,6 +68,7 @@ export class UebungService {
   public beendeTimer() :void {
     clearInterval(this.timerId);
     this.timerId = undefined;
+    this.istUebungGestartet.set(false)
   }
 
   public uebungsaufgabeGenerieren() : void {
