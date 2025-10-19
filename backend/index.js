@@ -6,7 +6,10 @@ app.use(cors());
 app.use(express.json());
 const UebungEvent = require("./schema.js");
 
-mongoose.connect("mongodb://host.docker.internal:27017/uebungEventDb")
+// mongodb://localhost:27017/uebungEventDb -> DEV
+// mongodb://host.docker.internal:27017/uebungEventDb -> PROD
+
+mongoose.connect("mongodb://localhost:27017/uebungEventDb")
   .then(() => console.log("MongoDB verbunden"))
   .catch(err => console.error(err));
 
