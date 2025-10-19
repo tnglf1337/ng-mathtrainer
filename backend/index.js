@@ -9,7 +9,7 @@ const UebungEvent = require("./schema.js");
 // mongodb://localhost:27017/uebungEventDb -> DEV
 // mongodb://host.docker.internal:27017/uebungEventDb -> PROD
 
-mongoose.connect("mongodb://localhost:27017/uebungEventDb")
+mongoose.connect("mongodb://host.docker.internal:27017/uebungEventDb")
   .then(() => console.log("MongoDB verbunden"))
   .catch(err => console.error(err));
 
