@@ -35,7 +35,7 @@
   </section>
 </section>
 
-<section id="uebung-container" *ngIf="istUebungGestartet()" class="border-b">
+<section id="uebung-container" *ngIf="istUebungGestartet()">
   <div id="uebung-ansicht-container">
     <div id="zeit-container">
       <p>{{uebungService.aktuelleSekunden | sekundenToHms}}</p>
@@ -59,25 +59,29 @@
 </section>
 <section id="post-uebung-statistik-container" *ngIf="uebungService.istUebungBeendet()">
   <div id="uebung-ergebnis-container" class="d-flex-row centered gap-10">
-    <div>
-      <p>Gelöst: <span>{{totaleAufgaben}}</span></p>
-    </div>
-    <div>
-      <p>Korrekt: <span class="korrekt-span">{{korrekteLoesungen}}</span></p>
-    </div>
-    <div>
-      <p>Falsch: <span class="falsch-span">{{falscheLoesungen}}</span></p>
-    </div>
+    <table>
+      <tbody>
+        <tr class="statistic-tr">
+          <td>Gelöst</td>
+          <td>{{totaleAufgaben}}</td>
+        </tr>
+        <tr class="statistic-tr">
+          <td>Korrekt</td>
+          <td class="korrekt-td">{{korrekteLoesungen}}</td>
+        </tr>
+        <tr class="statistic-tr">
+          <td>Falsch</td>
+          <td class="falsch-td">{{falscheLoesungen}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <section id="falsch-events-container">
+  <section id="falsch-events-container" *ngIf="falscheLoesungen > 0">
     <h5>Falsch beantwortet</h5>
     <ul>
       <li *ngFor="let falscheLoesung of uebungService.alleFalschenLoesungen">
-        <p><span>{{falscheLoesung.term}}</span> = <span class="falsch-span"><s>{{falscheLoesung.actualLoesung}}</s></span> <span> &#x27A1; </span> <span class="korrekt-span">{{falscheLoesung.expectedLoesung}}</span></p>
+        <p><span>{{falscheLoesung.term}}</span> = <span class="falsch-td"><s>{{falscheLoesung.actualLoesung}}</s></span> <span> &#x27A1; </span> <span class="korrekt-td">{{falscheLoesung.expectedLoesung}}</span></p>
       </li>
     </ul>
   </section>
-  <div id="link-container" class="d-flex-row">
-    <a href="#" id="erneut-link">nochmal</a>
-  </div>
 </section>

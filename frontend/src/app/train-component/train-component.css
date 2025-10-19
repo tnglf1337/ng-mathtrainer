@@ -88,21 +88,26 @@
 }
 
 #post-uebung-statistik-container {
-  background-color: #D9D9D9;
-  border-style: none;
+  background-color: whitesmoke;
+  border-style: solid;
+  border-color: #7dc8d7;
   border-radius: 25px;
   margin: 100px 20px 20px;
 }
 
-#falsch-events-container {
-  padding: 10px;
+table {
+  width: 15%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-#link-container {
-  height: 50px;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 20px;
+.statistic-tr {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#falsch-events-container {
+  padding: 10px;
 }
 
 #erneut-link {
@@ -114,11 +119,11 @@
   text-decoration: underline;
 }
 
-.korrekt-span {
+.korrekt-td {
   color: #0EAA06;
 }
 
-.falsch-span {
+.falsch-td {
   color: #E90808;
 }
 
