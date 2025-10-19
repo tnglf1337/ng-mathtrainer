@@ -189,8 +189,8 @@ export class AufgabeGenerator {
 
   private debugPrint() : void {
     console.log("init generator with config:")
-    console.log(this.numberRange)
-    console.log(this.terms)
+    console.log("numberRange: ", this.numberRange)
+    console.log("anzahl terme: ", this.terms)
   }
 
 }
