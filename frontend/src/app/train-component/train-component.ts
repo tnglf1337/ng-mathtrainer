@@ -38,6 +38,7 @@ export class TrainComponent {
   }
 
   uebungStarten() {
+    this.uebungService.zustandZuruecksetzen()
     const gewaehlterModus = this.modusForm.getModus();
     const gewaehlteSchwierigkeit = this.schwierigkeitForm.getSchwierigkeit();
     this.uebungService.initService(gewaehlterModus, gewaehlteSchwierigkeit, this.istUebungGestartet);
