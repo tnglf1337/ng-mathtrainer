@@ -1,3 +1,7 @@
+:host {
+  --header-font-color: rgba(47, 47, 47, 0.91);
+}
+
 ul {
   display: flex;
   gap: 40px;
@@ -8,15 +12,24 @@ ul {
 
 main{
   width: 1000px;
-  background-color: #D9D9D9;
   height: auto;
   min-height: 95vh;
 }
 
+h1 {
+  font-size: 60px;
+  font-weight: 600;
+}
+
+.nav-link {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--header-font-color);
+}
+
 header {
-  background-color: var(--header-bg);
   height: 100px;
-  padding-top: 25px;
+  color: var(--header-font-color);
 }
 
 #navigation {
@@ -25,6 +38,7 @@ header {
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
+  height: 100%;
 }
 
 a {
@@ -34,8 +48,4 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-.shadowed {
-  box-shadow: 0 8px 6px 6px rgba(0, 0, 0, 0.3);
 }
