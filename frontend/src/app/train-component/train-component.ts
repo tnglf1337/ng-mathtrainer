@@ -55,8 +55,9 @@ export class TrainComponent {
     return this.loesungForm.get("loesung")?.value;
   }
 
-  get totaleAufgaben() : number {
-    return this.uebungService.uebungStatistik.totalAufgaben
+  get totaleAufgaben() : number  {
+    const n = this.korrekteLoesungen + this.falscheLoesungen
+    return n
   }
 
   get korrekteLoesungen() : number {

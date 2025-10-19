@@ -24,7 +24,6 @@ export class UebungService {
   falscheLoesungenHistory! : FalscheLoesungenHistory;
 
   uebungStatistik = {
-    totalAufgaben: 0,
     korrekteLoesung: 0,
     falscheLoesung: 0
   }
@@ -68,7 +67,6 @@ export class UebungService {
   }
 
   public uebungsaufgabeGenerieren() : void {
-    this.uebungStatistik.totalAufgaben++;
     this.aktuelleAufgabe.set(this.aufgabenGenerator.generateAufgabe());
   }
 
@@ -76,18 +74,19 @@ export class UebungService {
     const loesungAsNumber = parseInt(benutzerLoesung);
     if(this.aktuelleAufgabe().loesung === loesungAsNumber) {
       this.uebungStatistik.korrekteLoesung++;
+      console.log("LOESUNG KORREKT")
       return true;
     } else {
       this.uebungStatistik.falscheLoesung++;
       const actualLoesung = this.aktuelleAufgabe().loesung.toString()
       this.falscheLoesungenHistory.pushFalscheLoesung(this.aktuelleAufgabe().term, actualLoesung, benutzerLoesung)
+      console.log("LOESUNG FALSCH")
       return false;
     }
   }
 
   zustandZuruecksetzen() : void {
     this.sekunden.set(1)
-    this.uebungStatistik.totalAufgaben = 0
     this.uebungStatistik.korrekteLoesung = 0;
     this.uebungStatistik.falscheLoesung = 0;
     this.aktuelleAufgabe.set({term: "", loesung: 0})
@@ -177,6 +176,6 @@ export class UebungService {
       }
 
     }
-
+    console.log("initialized seconds to: ", this.sekunden())
   }
 }
