@@ -1,14 +1,14 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {UebungApiService} from '../api/uebung-api.service';
 import {UebungEvent} from '../train-component/domain/uebung';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {DatumDePipe} from './datum-de.pipe';
 import {ModusPipe} from './modus.pipe';
 import {SchwierigkeitPipe} from './schwierigkeit.pipe';
 
 @Component({
   selector: 'app-history-component',
-  imports: [NgForOf, DatumDePipe, ModusPipe, SchwierigkeitPipe],
+  imports: [NgForOf, DatumDePipe, ModusPipe, SchwierigkeitPipe, NgIf],
   templateUrl: './history-component.html',
   styleUrls: ['./history-component.css', '../debug.css']
 })

@@ -1,6 +1,12 @@
 <section id="history-container">
-  <table class="table history-table">
-    <thead>
+  <ng-container *ngIf="uebungEvents.length === 0">
+    <div id="info-container">
+      <p class="info-text">Bisher wurden noch keine Übungen abgeschlossen.</p>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="uebungEvents.length !== 0">
+    <table class="table history-table">
+      <thead>
       <tr>
         <th>Datum</th>
         <th>Modus</th>
@@ -8,8 +14,8 @@
         <th>Korrekt</th>
         <th>Falsch</th>
       </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
       <tr *ngFor="let event of uebungEvents">
         <td>{{event.beendetAm | datumDe}}</td>
         <td>{{event.modus | modusTransform}}</td>
@@ -17,6 +23,7 @@
         <td>{{event.korrektLoesungen}}</td>
         <td>{{event.falscheLoesungen}}</td>
       </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </ng-container>
 </section>
