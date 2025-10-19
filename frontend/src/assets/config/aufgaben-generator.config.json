@@ -3,7 +3,7 @@
     "0": {
       "numberRange": [2, 100],
       "terms": 2,
-      "uebungszeitSekunden": 5
+      "uebungszeitSekunden": 120
     },
     "1": {
       "numberRange": [10, 10000],
@@ -20,7 +20,7 @@
     "0": {
       "numberRange": [-100, 100],
       "terms": 2,
-      "uebungszeitSekunden": 20
+      "uebungszeitSekunden": 120
     },
     "1": {
       "numberRange": [-10000, 10000],
