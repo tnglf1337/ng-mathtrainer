@@ -1,16 +1,18 @@
-<header>
-  <nav id="navigation">
-    <h1>MathTrainer</h1>
-    <ul>
-      <li>
-        <a [routerLink]="'/uebung'" aria-label="Link zu vergangenen Übungsrunden">Übung</a>
-      </li>
-      <li>
-        <a [routerLink]="'/history'" aria-label="Link zu vergangenen Übungsrunden">History</a>
-      </li>
-    </ul>
-  </nav>
-</header>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<div class="shadowed">
+  <header>
+    <nav id="navigation">
+      <h1>MathTrainer</h1>
+      <ul>
+        <li>
+          <a [routerLink]="'/uebung'" aria-label="Link zu vergangenen Übungsrunden">Übung</a>
+        </li>
+        <li>
+          <a [routerLink]="'/history'" aria-label="Link zu vergangenen Übungsrunden">History</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
